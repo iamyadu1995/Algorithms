@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+//AABAACAADAABAABA
+//AABA
+//found
+void patsearch(string txt,string pat,int q)
+{
+   int m=txt.length();
+   int n=pat.length();
+   int hashofpat=0,hashoftxt=0;
+
+   for(int i=0;i<n;i++){
+      hashofpat=hashofpat+pat[i]*pow(q,i);
+      hashoftxt+=txt[i]*pow(q,i);
+   }
+   //cout<<hashofpat<<"  "<<hashoftxt<<"\n";
+   int flag=0;
+   for(int i=1;i<=(m-n+1);i++)
+   {
+       if(hashofpat==hashoftxt)
+       {
+           int j;
+           for(j=0;j<n;j++)
+           {
+               if(txt[i+j-1]!=pat[j])
+                 break;
+           }
+           if(j==n){
+            cout<<"found"<<"\n";
+            flag=1;
+            break;}
+
+       }
+       if(i!=(m-n+1)){
+       hashoftxt=hashoftxt-txt[i-1];
+           hashoftxt=hashoftxt/q;
+           hashoftxt=hashoftxt+txt[i+n-1]*pow(q,n-1);
+         //  cout<<hashoftxt<<" ";
+       }
+   }
+  if(flag==0)
+    cout<<"not found"<<"\n";
+}
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+    string txt,pat;
+    cin>>txt>>pat;
+    int q=101;
+    patsearch(txt,pat,q);
+    }
+	return 0;
+}
