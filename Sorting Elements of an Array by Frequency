@@ -1,0 +1,72 @@
+#include <iostream>
+#include <array>
+#include <algorithm>
+//#include <map>
+using namespace std;
+
+int main() {
+    int t,n;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        array<int,2> a[130]={0};
+        //cout<<a[1][0]<<a[4][0];
+        int x,max=0;
+        //cout<<a[36];
+        for(int i=0;i<n;i++)
+         {
+             cin>>x;
+             if(x>max)
+              max=x;
+             a[x][0]++;
+             a[x][1]=x;
+         }
+         auto comp = []( const array<int, 2>& u, const array<int, 2>& v )
+      { if(u[0] > v[0])
+           return true;
+         if(u[0]==v[0])
+          return (u[1]<v[1]);
+          
+         return false; 
+          
+      };
+        sort( a, a + max+1,comp);
+        //cout<<max;
+        int j,f,i=0;
+      /* a[-1][1]=-1;
+      while(i<=max)
+      {
+          f=0,j=0;
+          while(a[i][0]==a[i-1][0])
+          {
+              f=1;
+              if(j==0)
+                x=i-1;
+              j++;
+              i++;
+          }
+          if(f==1){
+             auto comp = []( const array<int, 2>& u, const array<int, 2>& v )
+      { return u[1] < v[1]; };
+        sort( a+x, a+x+j+1,comp);
+          }
+         else
+          i++;
+      }*/
+    //  cout<<a[5][1];
+    
+       // cout<<a[2][0]<<a[2][1];
+        //cout<<a[3][0]<<a[3][1];
+       j=0;
+        while(a[j][0]!=0)
+        {
+            
+            for(int k=0;k<a[j][0];k++)
+             cout<<a[j][1]<<" ";
+            j++; 
+        }
+        cout<<"\n";
+    }
+	return 0;
+}
