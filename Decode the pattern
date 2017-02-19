@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+	int t,n;
+	string str;
+	cin>>t;
+	while(t--)
+	{
+	    cin>>n;
+	    str="11";
+	    string s;
+	    if(n==1)
+	     cout<<"1"<<"\n";
+	    if(n==2) 
+	     cout<<"11"<<"\n";
+	    int cnt; 
+	    for(int i=3;i<=n;i++)
+	    {
+	        //char c=s[0];
+	        s=str;
+	        str="";
+	        cnt=1;
+	        int j;
+	        for(j=1;j<s.length();j++)
+	        {
+	            if(s[j-1]==s[j])
+	             cnt++;
+	            else
+	            {
+	                
+	                str=str+(to_string(cnt));
+	                str=str+s[j-1];
+	                cnt=1;
+	            }    
+	        }
+	        
+	            str=str+(to_string(cnt));
+	            str=str+s[j-1];
+	        
+	    }
+	    if(n>2)
+	     cout<<str<<"\n";
+	}
+	return 0;
+}
